@@ -24,7 +24,7 @@ function ProductCard({ product }: ProductProps) {
             </div>
 
             <div className="h-1/2 m-1">
-                <Link href={`products/${product.id}`}>
+                <Link href={`/${product.id}`}>
                     <h5 className="text-xl m-2 h-1/5 font-semibold tracking-tight text-gray-900 dark:text-dark-blue">{truncateText(product.title, 7)}</h5>
                 </Link>
                 <span className="text-sm h-1/5  text-gray-500 dark:text-gray-400 m-3 text-center">
