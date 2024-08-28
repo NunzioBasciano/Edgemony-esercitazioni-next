@@ -25,12 +25,12 @@ function ProductCard({ product }: ProductProps) {
 
             <div className="h-1/2 m-1">
                 <Link href={`products/${product.id}`}>
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-dark-blue">{truncateText(product.title, 10)}</h5>
+                    <h5 className="text-xl m-2 h-1/5 font-semibold tracking-tight text-gray-900 dark:text-dark-blue">{truncateText(product.title, 7)}</h5>
                 </Link>
                 <span className="text-sm h-1/5  text-gray-500 dark:text-gray-400 m-3 text-center">
                     {product.category}
                 </span>
-                <p className="h-2/5 text-gray-900 text-sm m-1 text-left">{truncateText(product.description, 20)}</p>
+                <p className="h-2/5 text-gray-900 text-sm m-1 text-left">{truncateText(product.description, 30)}</p>
                 <div className="flex h-1/5 mt-4 md:mt-6 justify-center">
                     <p className="text-gray-900 text-xl">€{product.price.toFixed(2)}</p>
                 </div>
