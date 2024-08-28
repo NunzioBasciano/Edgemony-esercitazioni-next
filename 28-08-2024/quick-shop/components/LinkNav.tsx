@@ -1,16 +1,14 @@
 "use client";
 import React from 'react'
 import Link from 'next/link'
-import { IItem } from '@/model/product';
+import { IHref, IName } from '@/model/linkNav';
 
-interface ItemProps {
-    item: IItem
-}
+interface ILinkNavProps extends IHref, IName { }
 
-function LinkNav({ item }: ItemProps) {
+function LinkNav({ href, name }: ILinkNavProps) {
     return (
-        <Link href={item.path} className={`block py-2 px-3 md:p-0 "text-white"`}  >
-            {item.name}
+        <Link href={href} className={`block py-2 px-3 md:p-0 "text-white"`}  >
+            {name}
         </Link>
     )
 }

@@ -12,8 +12,3 @@ interface IRating {
     rate: number;
     count: number;
 }
-
-export interface IItem {
-    name: string;
-    path: string;
-}
