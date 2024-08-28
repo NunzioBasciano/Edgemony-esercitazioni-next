@@ -1,6 +1,7 @@
 import { truncateText } from '@/function/truncateText';
-import { IProduct } from '@/model/product'
-import React from 'react'
+import { IProduct } from '@/model/product';
+import Link from 'next/link';
+import React from 'react';
 
 interface ProductProps {
     product: IProduct;
@@ -23,9 +24,9 @@ function ProductCard({ product }: ProductProps) {
             </div>
 
             <div className="h-1/2 m-1">
-                <h5 className="m-3 text-l h-1/5  font-medium text-gray-900 text-center">
-                    {truncateText(product.title, 8)}
-                </h5>
+                <Link href={`products/${product.id}`}>
+                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-dark-blue">{truncateText(product.title, 10)}</h5>
+                </Link>
                 <span className="text-sm h-1/5  text-gray-500 dark:text-gray-400 m-3 text-center">
                     {product.category}
                 </span>
