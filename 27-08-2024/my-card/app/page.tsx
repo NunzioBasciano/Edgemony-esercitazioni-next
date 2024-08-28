@@ -23,7 +23,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 justify-center md:grid-cols-3 gap-4 m-4 ">
+    <div className="grid grid-cols-1 justify-center md:grid-cols-3 gap-4 m-48">
       {products.map((product, index) => (
         <Card key={index} product={product} />
       ))}

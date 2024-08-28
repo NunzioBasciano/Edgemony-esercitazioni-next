@@ -1,6 +1,6 @@
 export function truncateText(text: string, maxWords: number): string {
     // Dividi il testo in un array di parole
-    const words = text.split(' ');
+    const words = text.split(/[\s/]/);
 
     // Controlla se il numero di parole supera maxWords
     if (words.length > maxWords) {
