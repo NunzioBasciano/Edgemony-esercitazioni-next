@@ -14,7 +14,7 @@ const getProducts = async () => {
     }
 }
 
-export default async function Electronics() {
+export default async function Jewelry() {
 
     const products = await getProducts();
     return (

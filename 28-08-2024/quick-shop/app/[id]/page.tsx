@@ -1,5 +1,6 @@
 import { IProduct } from "@/model/product";
 
+
 // Funzione per ottenere i dati del prodotto basato su ID
 const getProductById = async (id: string): Promise<IProduct> => {
     try {
