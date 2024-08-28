@@ -13,4 +13,5 @@ function LinkNav({ href, name }: ILinkNavProps) {
     )
 }
 
+
 export default LinkNav
