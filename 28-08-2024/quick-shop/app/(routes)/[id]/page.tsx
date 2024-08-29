@@ -15,8 +15,14 @@ const getProductById = async (id: string): Promise<IProduct> => {
     }
 };
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-    const product = await getProductById(params.id);
+interface ProductPageProps {
+    params: { id: string };
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+
+    const { id } = params;
+    const product = await getProductById(id);
 
     return (
         <div className="bg-gray-100">
