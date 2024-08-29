@@ -1,4 +1,5 @@
 import { IProduct } from "@/model/product";
+import Link from "next/link";
 
 
 // Funzione per ottenere i dati del prodotto basato su ID
@@ -66,9 +67,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         </div>
 
                         <div className="flex space-x-4 mb-6">
-                            <button className="bg-gray-200 flex gap-2 items-center text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
-                                Wishlist
-                            </button>
+                            <Link
+                                href={'/'}
+                                className="bg-gray-200 flex gap-2 items-center text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                            >
+                                Back
+                            </Link>
                         </div>
                     </div>
                 </div>
