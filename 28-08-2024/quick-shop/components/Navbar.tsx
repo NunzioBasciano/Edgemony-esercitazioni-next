@@ -9,7 +9,8 @@ const menuList = [
     { name: "Electronics", path: "electronics" },
     { name: "Men's clothing", path: "mens-clothing" },
     { name: "Jewelry", path: "jewelry" },
-    { name: "Women's clothing", path: "womens-clothing" }
+    { name: "Women's clothing", path: "womens-clothing" },
+    { name: "Add a product", path: "create" }
 ];
 
 function Navbar() {

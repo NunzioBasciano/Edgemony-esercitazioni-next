@@ -1,5 +1,5 @@
 import { IProduct } from "@/model/product";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../../components/ProductCard";
 import { labels } from "@/data/labels";
 
 const getProducts = async () => {
