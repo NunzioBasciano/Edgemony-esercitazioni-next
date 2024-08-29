@@ -20,7 +20,7 @@ const addProduct = async (body: IAddProduct) => {
     }
 }
 
-function Page() {
+function CreateItem() {
     const initialState: IAddProduct = {
         id: 1,
         title: '',
@@ -32,7 +32,6 @@ function Page() {
 
     const [form, setForm] = useState(initialState);
 
-    // Validazioni
     const titleValidation = form.title.length > 2;
     const descriptionValidation = form.description.length > 10;
     const priceValidation = form.price > 0;
@@ -62,14 +61,12 @@ function Page() {
                 const res = await addProduct(form);
                 console.log(res);
                 alert('Product added successfully!');
-                setForm(initialState); // Resetta il form
+                setForm(initialState);
             } else {
                 alert('Please fill in all fields correctly.');
             }
         } catch (error) {
             console.log(error);
-        } finally {
-            redirect('/')
         }
     }
 
@@ -155,7 +152,7 @@ function Page() {
                     <button
                         type="submit"
                         className="w-full bg-indigo-600 text-white py-2 rounded-lg"
-                        disabled={!formValidation}
+                    /* disabled={ } */
                     >
                         Add Product
                     </button>
@@ -165,4 +162,4 @@ function Page() {
     )
 }
 
-export default Page;
+export default CreateItem;
