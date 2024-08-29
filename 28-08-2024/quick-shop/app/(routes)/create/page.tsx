@@ -1,7 +1,7 @@
 'use client'
 import { IAddProduct } from '@/model/product'
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 
 // Funzione per aggiungere un prodotto
@@ -31,6 +31,8 @@ function CreateItem() {
     }
 
     const [form, setForm] = useState(initialState);
+    const router = useRouter();
+
 
     const titleValidation = form.title.length > 2;
     const descriptionValidation = form.description.length > 10;
@@ -60,8 +62,8 @@ function CreateItem() {
             if (formValidation) {
                 const res = await addProduct(form);
                 console.log(res);
-                alert('Product added successfully!');
                 setForm(initialState);
+                router.push('/');
             } else {
                 alert('Please fill in all fields correctly.');
             }
@@ -111,7 +113,7 @@ function CreateItem() {
                         <div className="relative">
                             <select
                                 name='category'
-                                onChange={handleChange} // Sposta onChange qui
+                                onChange={handleChange}
                                 value={form.category}
                                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                             >
@@ -152,7 +154,7 @@ function CreateItem() {
                     <button
                         type="submit"
                         className="w-full bg-indigo-600 text-white py-2 rounded-lg"
-                    /* disabled={ } */
+                        disabled={!formValidation}
                     >
                         Add Product
                     </button>
