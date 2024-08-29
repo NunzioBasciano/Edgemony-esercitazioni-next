@@ -1,10 +1,10 @@
 import { IProduct } from "@/model/product";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../../components/ProductCard";
 import { labels } from "@/data/labels";
 
 const getProducts = async () => {
     try {
-        const res = await fetch(`https://fakestoreapi.com/products/category/${labels.menClothingLabel}`);
+        const res = await fetch(`https://fakestoreapi.com/products/category/${labels.jewelryLabel}`);
         const data: Promise<IProduct[]> = res.json();
 
         return data;
@@ -14,7 +14,7 @@ const getProducts = async () => {
     }
 }
 
-export default async function MenClothing() {
+export default async function Jewelry() {
 
     const products = await getProducts();
     return (
