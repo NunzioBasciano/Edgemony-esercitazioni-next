@@ -6,7 +6,7 @@ export interface IProduct {
     price: number;
     image: string;
     rating: IRating;
-    quantity?: number;
+    quantity?: number | undefined;
 }
 
 interface IRating {

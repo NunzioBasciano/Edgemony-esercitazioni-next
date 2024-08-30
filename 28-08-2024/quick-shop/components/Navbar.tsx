@@ -11,7 +11,8 @@ const menuList = [
     { name: "Men's clothing", path: "mens-clothing" },
     { name: "Jewelry", path: "jewelry" },
     { name: "Women's clothing", path: "womens-clothing" },
-    { name: "Add a product", path: "create" }
+    { name: "Add a product", path: "create" },
+    { name: "Cart", path: "cart" }
 ];
 
 function Navbar() {

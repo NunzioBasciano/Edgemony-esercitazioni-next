@@ -9,7 +9,7 @@ interface ProductContextType {
     setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
-const ProductContext = createContext<ProductContextType | undefined>(undefined);
+export const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [products, setProducts] = useState<IProduct[]>([]);
