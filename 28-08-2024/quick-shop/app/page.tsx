@@ -1,5 +1,6 @@
 import { IProduct } from "@/model/product";
 import ProductCard from "../components/ProductCard";
+import { ProductProvider } from "@/providers/ProductContext";
 
 const getProducts = async () => {
   try {
@@ -18,15 +19,18 @@ export default async function Home() {
   const products = await getProducts();
   return (
     <>
-      <div className="flex items-center justify-center flex-wrap">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-1">
-          {products.map((product: any) => (
-            <ProductCard
-              product={product}
-            />
-          ))}
+      <ProductProvider>
+        <div className="flex items-center justify-center flex-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-1">
+            {products.map((product: any) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </ProductProvider>
     </>
   );
 }

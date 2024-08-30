@@ -6,6 +6,7 @@ export interface IProduct {
     price: number;
     image: string;
     rating: IRating;
+    quantity?: number;
 }
 
 interface IRating {

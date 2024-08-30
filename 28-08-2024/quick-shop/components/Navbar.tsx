@@ -3,6 +3,7 @@ import Link from "next/link";
 import LinkNav from "./LinkNav";
 import { labels } from "@/data/labels";
 import { usePathname } from "next/navigation";
+import { useProductContext } from "@/providers/ProductContext";
 
 const menuList = [
     { name: "Home", path: "/" },
@@ -14,6 +15,8 @@ const menuList = [
 ];
 
 function Navbar() {
+
+    const { products, setProducts } = useProductContext();
 
     const pathname = usePathname();
     return (
@@ -46,6 +49,12 @@ function Navbar() {
                             </li>
                         ))}
                     </ul>
+                </div>
+                <div className="hidden max-[768px]:block py-2 px-3 text-white md:p-0" >
+                    {products.length}
+                </div>
+                <div className="block py-2 px-3 text-white md:p-0 " >
+                    {products.length}
                 </div>
             </div>
         </nav>

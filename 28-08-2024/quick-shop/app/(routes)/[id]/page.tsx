@@ -1,6 +1,9 @@
+'use client'
+
 import { IProduct } from "@/model/product";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+import { useProductContext } from "@/providers/ProductContext";
 
 // Funzione per ottenere i dati del prodotto basato su ID
 const getProductById = async (id: string): Promise<IProduct> => {
@@ -20,10 +23,63 @@ interface ProductPageProps {
     params: { id: string };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-
+export default function ProductPage({ params }: ProductPageProps) {
     const { id } = params;
-    const product = await getProductById(id);
+    const { products, setProducts } = useProductContext();
+    const [product, setProduct] = useState<IProduct | null>(null);  // Stato per il prodotto
+    const [quantity, setQuantity] = useState<number>(1);  // Stato per la quantità
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const fetchedProduct = await getProductById(id);
+                setProduct(fetchedProduct);  // Imposta il prodotto nello stato
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
+
+    const handleAdd = () => {
+        if (!product) return;
+
+        setProducts((prevState) => {
+            const existingProduct = prevState.find(p => p.id === product.id);
+            if (existingProduct) {
+                return prevState.map(p =>
+                    p.id === product.id ? { ...p, quantity: (p.quantity ?? 0) + quantity } : p
+                );
+            } else {
+                return [...prevState, { ...product, quantity }];
+            }
+        });
+    };
+
+    const handleMin = () => {
+        if (!product) return;
+
+        setProducts(prevState => {
+            const existingProduct = prevState.find(p => p.id === product.id);
+            if (existingProduct) {
+                if ((existingProduct.quantity ?? 0) > quantity) {
+                    return prevState.map(p =>
+                        p.id === product.id
+                            ? { ...p, quantity: (p.quantity ?? 0) - quantity }
+                            : p
+                    );
+                } else {
+                    return prevState.filter(p => p.id !== product.id);
+                }
+            }
+            return prevState;
+        });
+    };
+
+    if (!product) {
+        return <div>Loading...</div>;  // Renderizza un messaggio di caricamento se il prodotto non è ancora stato caricato
+    }
 
     return (
         <div className="bg-gray-100">
@@ -64,9 +120,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
                             <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
                                 Quantity:
                             </label>
+                            <input
+                                type="number"
+                                id="quantity"
+                                min="1"
+                                value={quantity}
+                                onChange={(e) => setQuantity(Number(e.target.value))}
+                                className="border rounded-md p-2"
+                            />
                         </div>
-
                         <div className="flex space-x-4 mb-6">
+                            <button onClick={handleAdd} className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Add to Cart
+                            </button>
+                            <button onClick={handleMin} className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Remove from Cart
+                            </button>
+                            <button className="bg-gray-200 flex gap-2 items-center text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                                Wishlist
+                            </button>
                             <Link
                                 href={'/'}
                                 className="bg-gray-200 flex gap-2 items-center text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
